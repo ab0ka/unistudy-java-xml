@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.8'
+}
+group = 'kz.unistudy'
+version = '5.7.0'
+repositories { mavenCentral() }
+dependencies {
+    implementation platform('org.springframework.boot:spring-boot-dependencies:3.5.8')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.security:spring-security-crypto'
+    implementation 'com.ibm.icu:icu4j:76.1'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.82'
+    implementation 'org.xerial:sqlite-jdbc:3.50.3.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+    options.compilerArgs += '-parameters'
+}
+test { useJUnitPlatform(); maxHeapSize = '240m' }
+bootJar {
+    archiveFileName = 'unistudy-server.jar'
+    manifest { attributes 'Implementation-Version': project.version }
+}
+
+
+// Explicit opt-in demo initialization; never invoked by bootRun or bootJar.
+tasks.register('demoInit', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'kz.unistudy.DemoBootstrap'
+    maxHeapSize = '192m'
+    args providers.gradleProperty('demoDb').getOrElse('../private/unistudy.db')
+}
+
+springBoot { mainClass = 'kz.unistudy.Application' }

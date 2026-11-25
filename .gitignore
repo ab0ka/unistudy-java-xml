@@ -1,0 +1,26 @@
+# Local secrets and generated/private content
+.env
+.env.*
+!.env.example
+private/
+storage/
+output/
+**/build/
+**/.gradle/
+.idea/
+**/.idea/
+*.iml
+**/local.properties
+*.db
+*.db-*
+*.sqlite*
+*.apk
+*.aab
+*.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+*.jks
+*.keystore
+*.pem
+*.key
+*.log
+.DS_Store

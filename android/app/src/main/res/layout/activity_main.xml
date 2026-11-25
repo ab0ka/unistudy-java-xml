@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/canvas">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        android:contentDescription="Жүктелуде"/>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/surface"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E7E8F0"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <Button android:id="@+id/nav_home" style="@style/NavButton"
+                android:drawableTop="@drawable/nav_house" android:text="Басты бет"/>
+            <Button android:id="@+id/nav_materials" style="@style/NavButton"
+                android:drawableTop="@drawable/nav_book" android:contentDescription="Материалдар" android:text="Материал"/>
+            <Button android:id="@+id/nav_tasks" style="@style/NavButton"
+                android:drawableTop="@drawable/nav_task" android:contentDescription="Тапсырмалар" android:text="Тапсырма"/>
+            <Button android:id="@+id/nav_grades" style="@style/NavButton"
+                android:drawableTop="@drawable/nav_calendar" android:text="Күнтізбе"/>
+            <Button android:id="@+id/nav_menu" style="@style/NavButton"
+                android:drawableTop="@drawable/nav_profile" android:contentDescription="Жеке кабинет" android:text="Кабинет"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

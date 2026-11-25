@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: unistudy
+    runtime: docker
+    region: frankfurt
+    plan: 0.5c-512mb
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeployTrigger: 'off'
+    envVars:
+      - key: UNISTUDY_DB
+        value: /var/data/unistudy.db
+      - key: UNISTUDY_STORAGE
+        value: /var/data/files
+      - key: JAVA_TOOL_OPTIONS
+        value: -Xmx256m -XX:MaxDirectMemorySize=64m
+    disk:
+      name: unistudy-data
+      mountPath: /var/data
+      sizeGB: 1

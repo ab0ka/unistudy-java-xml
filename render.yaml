@@ -1,0 +1,21 @@
+# Free demo variant: no persistent disk, the synthetic demo database is recreated on every start.
+# The original paid configuration with a 1 GB disk is kept in render.paid.yaml.
+services:
+  - type: web
+    name: unistudy
+    runtime: docker
+    region: frankfurt
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeployTrigger: 'off'
+    envVars:
+      - key: UNISTUDY_DB
+        value: /tmp/unistudy.db
+      - key: UNISTUDY_STORAGE
+        value: /tmp/files
+      - key: UNISTUDY_DEMO_INIT
+        value: '1'
+      - key: JAVA_TOOL_OPTIONS
+        value: -Xmx256m -XX:MaxDirectMemorySize=64m

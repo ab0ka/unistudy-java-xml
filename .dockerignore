@@ -1,0 +1,6 @@
+*
+!server/
+!server/**
+server/.gradle
+server/build
+server/*.log
